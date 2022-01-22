@@ -11,13 +11,15 @@ export type View = {
 export type Context = {
   canPrevious: Boolean;
   canNext: Boolean;
-  currentView: View;
+  // currentView: View;
 };
 
 export type State = {
   states: {
     contact: StateNode;
     details: StateNode;
+    submitting: StateNode;
+    failed: StateNode;
     submitted: StateNode;
   };
 };

@@ -1,6 +1,6 @@
 import { MachineConfig, MachineOptions, createMachine, assign } from 'xstate';
 
-import { mapNameToView, changeView } from './formMachine.actions';
+import { changeView } from './formMachine.actions';
 import { State, Context } from './formMachine.types';
 
 const initialStateName = 'contact';
@@ -11,7 +11,7 @@ const formMachineConfig: MachineConfig<Context, State, Event> = {
   context: {
     canPrevious: false,
     canNext: true,
-    currentView: mapNameToView[initialStateName],
+    // currentView: mapNameToView[initialStateName],
   },
   states: {
     contact: {
@@ -45,9 +45,9 @@ const formMachineConfig: MachineConfig<Context, State, Event> = {
           ]
         },
         NEXT: { 
-          target: 'submitted', 
+          target: 'submitting', 
           actions: [
-            { type: 'changeView', payload: 'submitted' },
+            { type: 'changeView', payload: 'submitting' },
             assign((context, event) => { 
               return {
                 canNext: false, 
@@ -58,21 +58,26 @@ const formMachineConfig: MachineConfig<Context, State, Event> = {
         },
       }
     },
-    submitted: {
-      on: {
-        PREVIOUS: { 
-          target: 'details', 
-          actions: [
-            { type: 'changeView', payload: 'details' },
-            assign((context, event) => { 
-              return {
-                canNext: true, 
-                canPrevious: true
-              }
-            })
-          ]
+    submitting: {
+      invoke: {
+        id: "submitting",
+        src: ctx => {
+          return Promise.resolve()
         },
-      },
+        onDone: {
+          target: "submitted",
+          actions: { type: 'changeView', payload: 'submitted' }
+        },
+        onError: "failed"
+      }
+    },
+    failed: {
+      on: {
+        RETRY: "submitting"
+      }
+    },
+    submitted: {
+      type: "final"
     },
   },
 };

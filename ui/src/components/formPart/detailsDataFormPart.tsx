@@ -1,6 +1,28 @@
 import React, { Component } from "react";
 
-export class DetailsDataFormPart extends Component {
+interface DetailsDataProps {
+  machine: any
+}
+
+export class DetailsDataFormPart extends Component<DetailsDataProps> {
+  constructor(props: DetailsDataProps) {
+    super(props)
+
+    this.machine = props.machine
+    this.next = this.next.bind(this)
+    this.previous = this.previous.bind(this)
+  }
+
+  machine: any
+
+  next() {
+    this.machine.send('NEXT')
+  }
+
+  previous() {
+    this.machine.send('PREVIOUS')
+  }
+
   render() {
     return (
       <div>
@@ -81,6 +103,11 @@ export class DetailsDataFormPart extends Component {
             <input type="number" name="dependants" placeholder="dependants" min={0} max={10}></input>
           </div>
         </form>
+
+        <div className="ui hidden divider"></div>
+
+        <button className="ui button" disabled={!this.machine.current.context.canPrevious} onClick={this.previous}>Prev</button>
+        <button className="ui button" disabled={!this.machine.current.context.canNext} onClick={this.next}>Next</button>
       </div>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export class SubmittedDataFormPart extends Component {
+export class SubmittedFormPart extends Component {
   render() {
     return (
       <div>
