@@ -20,7 +20,6 @@ const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
         NEXT: { 
           target: 'details', 
           actions: [
-            { type: 'changeView', payload: 'details' },
             assign((context, event) => { 
               return {
                 canNext: true, 
@@ -37,7 +36,6 @@ const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
         PREVIOUS: { 
           target: 'contact', 
           actions: [
-            { type: 'changeView', payload: 'contact' },
             assign((context, event) => { 
               return {
                 canNext: true, 
@@ -49,7 +47,6 @@ const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
         NEXT: { 
           target: 'submitting', 
           actions: [
-            { type: 'changeView', payload: 'submitting' },
             assign((context, event) => { 
               return {
                 canNext: false, 
@@ -66,11 +63,15 @@ const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
         id: "submitting",
         src: ctx => {
           return api.submitInformation({ contact: ctx.contact, details: ctx.details })
+            .then(result => {
+              console.log('Worked', result)
+            })
+            .catch(err => {
+              console.error('Failed', err)
+              throw err
+            })
         },
-        onDone: {
-          target: "submitted",
-          actions: { type: 'changeView', payload: 'submitted' }
-        },
+        onDone: "submitted",
         onError: "failed"
       }
     },
