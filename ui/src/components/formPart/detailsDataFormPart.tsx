@@ -8,7 +8,7 @@ interface DetailsDataProps {
 
 const afterTaxIncomeSchema = {
   income: Joi.number().min(1).required().label('Income Amount'),
-  frequency: Joi.string().allow('weekly', 'fortnightly', 'monthly').required().label('Income Frequency'),
+  frequency: Joi.string().valid('weekly', 'fortnightly', 'monthly', 'yearly').required().label('Income Frequency'),
 }
 const employerSchema = {
   name: Joi.string().required().label('Employer Name'),
@@ -16,7 +16,7 @@ const employerSchema = {
   months: Joi.number().min(0).max(11).required().label('Employer Months')
 }
 const schema = {
-  relationshipStatus: Joi.string().allow('single', 'married', 'divorced').required().label('Relationship Status'),
+  relationshipStatus: Joi.string().valid('single', 'married', 'divorced').required().label('Relationship Status'),
   afterTaxIncome: Joi.object(afterTaxIncomeSchema).required(),
   occupation: Joi.string().required().label('Occupation'),
   employer: Joi.object(employerSchema).required().or('years', 'months'),
@@ -166,6 +166,7 @@ export class DetailsDataFormPart extends Component<DetailsDataProps> {
                   <option value="weekly">Weekly</option>
                   <option value="fortnightly">Fortnightly</option>
                   <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
                 </select>
                 {this.errors['afterTaxIncomeFrequency'] && <div className="ui pointing red label">{this.errors['afterTaxIncomeFrequency']}</div>}
               </div>
