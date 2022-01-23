@@ -1,5 +1,5 @@
 import { Column, CreatedAt, DataType, DefaultScope, Model, PrimaryKey, Table } from "sequelize-typescript";
-import { Optional } from "sequelize";
+import { Optional, UUIDV4 } from "sequelize";
 
 interface QuoteModel {
     quoteId: number
@@ -22,7 +22,7 @@ export default class Quote extends Model<QuoteModel, QuoteCreation> {
     @Column({field: 'quote_id', type: DataType.BIGINT})
     quoteId: number
 
-    @Column({type: DataType.UUIDV4})
+    @Column({type: DataType.UUIDV4, defaultValue: UUIDV4})
     uuid?: string
 
     @Column({type: DataType.TINYINT})

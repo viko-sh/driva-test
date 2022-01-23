@@ -18,7 +18,7 @@ server.post('/',async (req, res)=>{
       status: 1,
       quoteData: req.body
     },{
-      fields: ['quoteId', 'uuid', 'status', 'mobile', 'email', 'quoteData', 'createdAt']
+      silent: true
     })
     res.statusCode = 200
     res.send()
