@@ -1,0 +1,117 @@
+[
+    {
+        "id": 1,
+        "seq": 1,
+        "page": 1,
+        "label": "First Name",
+        "placeholder": "As it appears on your license",
+        "type": "text",
+        "restrictedValue": [],
+        "validation": "^[a-zA-Z\\s]+$",
+        "validationError": "Please enter a valid first name"
+    },
+    {
+        "id": 2,
+        "seq": 2,
+        "page": 1,
+        "label": "Last Name",
+        "placeholder": "As it appears on your license",
+        "type": "text",
+        "restrictedValue":[],
+        "validation": "^[a-zA-Z\\s]+$",
+        "validationError": "Please enter a valid last name"
+    },
+    {
+        "id": 3,
+        "seq": 3,
+        "page": 1,
+        "label": "Mobile Number",
+        "placeholder": "+61",
+        "type": "text",
+        "restrictedValue": [],
+        "validation": "^\\+614[0-9]{8}$",
+        "validationError": "Please enter a valid mobile number"
+    },
+    {
+        "id": 4,
+        "seq": 4,
+        "page": 1,
+        "label": "Email",
+        "placeholder": "Please enter a valid email",
+        "type": "text",
+        "restrictedValue": [],
+        "validation": "(.+)@(.+)",
+        "validationError": "Please enter a valid email"
+    },
+    {
+        "id": 5,
+        "seq": 1,
+        "page": 2,
+        "label": "Relationship Status",
+        "placeholder": "",
+        "type": "Option",
+        "restrictedValue": ["A","B","C"],
+        "validation": ""
+    },
+    {
+        "id": 6,
+        "seq": 1,
+        "page": 2,
+        "label": "After Tax Income",
+        "placeholder": "$",
+        "type": "text",
+        "restrictedValue": [],
+        "validation": "[0-9\\.]+",
+        "validationError": "Please enter a valid amount"
+    },
+    {
+        "id": 7,
+        "seq": 2,
+        "page": 2,
+        "label": "After Tax Income Frequency",
+        "placeholder": "",
+        "type": "option",
+        "restrictedValue": ["Weekly","Fortnightly","Monthly"],
+        "validation": ""
+    },
+    {
+        "id": 8,
+        "seq": 3,
+        "page": 2,
+        "label": "Occupation",
+        "placeholder": "Please enter your current occupation",
+        "type": "text",
+        "restrictedValue": [],
+        "validation": ""
+    },
+    {
+        "id": 9,
+        "seq": 4,
+        "page": 2,
+        "label": "Relationship Status",
+        "placeholder": "",
+        "type": "option",
+        "restrictedValue": ["A","B","C"],
+        "validation": ""
+    },
+    {
+        "id": 10,
+        "seq": 5,
+        "page": 2,
+        "label": "Time in Current Employment",
+        "placeholder": "",
+        "type": "text",
+        "restrictedValue": [],
+        "validation": ""
+    },
+    {
+        "id": 11,
+        "seq": 6,
+        "page": 2,
+        "label": "Dependats",
+        "placeholder": "",
+        "type": "option",
+        "restrictedValue": [0,1,2,3,4,5,6,7,8,9,10],
+        "validation": ""
+    }
+]
