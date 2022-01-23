@@ -1,11 +1,12 @@
 import { MachineConfig, MachineOptions, createMachine, assign } from 'xstate';
 
 import { changeView } from './formMachine.actions';
-import { State, Context } from './formMachine.types';
+import { State, Context, FormEvent } from './formMachine.types';
+import { ContactData } from '../types'
 
 const initialStateName = 'contact';
 
-const formMachineConfig: MachineConfig<Context, State, Event> = {
+const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
   id: 'formState',
   initial: initialStateName,
   context: {
@@ -21,9 +22,11 @@ const formMachineConfig: MachineConfig<Context, State, Event> = {
           actions: [
             { type: 'changeView', payload: 'details' },
             assign((context, event) => { 
+              console.log('Contact details', context, event)
               return {
                 canNext: true, 
-                canPrevious: true
+                canPrevious: true,
+                contact: event.contact
               }
             })
           ]
@@ -51,7 +54,8 @@ const formMachineConfig: MachineConfig<Context, State, Event> = {
             assign((context, event) => { 
               return {
                 canNext: false, 
-                canPrevious: false
+                canPrevious: false,
+                details: event.details
               }
             })
           ]
@@ -82,7 +86,7 @@ const formMachineConfig: MachineConfig<Context, State, Event> = {
   },
 };
 
-const formMachineOptions: Partial<MachineOptions<Context, Event>> = {
+const formMachineOptions: Partial<MachineOptions<Context, FormEvent>> = {
   actions: { changeView },
 };
 

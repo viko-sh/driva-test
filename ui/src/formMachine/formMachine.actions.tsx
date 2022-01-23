@@ -6,7 +6,7 @@ import { DetailsDataFormPart } from '../components/formPart/detailsDataFormPart'
 import { SubmittingFormPart } from '../components/formPart/submittingFormPart';
 import { SubmittedFormPart } from '../components/formPart/submittedFormPart';
 
-import { Context, View } from './formMachine.types';
+import { Context, View, FormEvent } from './formMachine.types';
 
 // export const mapNameToView: Record<string, View> = {
 //   contact: {
@@ -31,7 +31,7 @@ import { Context, View } from './formMachine.types';
 //   },
 // };
 
-export const changeView = assign<Context, Event>({
+export const changeView = assign<Context, FormEvent>({
   // currentView: (_context, _event, { action }) => {
   //   if (typeof action.payload !== 'string') {
   //     throw new Error('Action payload should be string');
