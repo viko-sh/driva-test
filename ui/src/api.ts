@@ -7,6 +7,11 @@ export class Api {
         };
 
         return fetch('http://localhost:8080/quote', requestOptions)
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not OK');
+                }
+                return response.json()
+            })
     }
 }
