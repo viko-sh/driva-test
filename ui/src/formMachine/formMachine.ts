@@ -22,7 +22,6 @@ const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
           actions: [
             { type: 'changeView', payload: 'details' },
             assign((context, event) => { 
-              console.log('Contact details', context, event)
               return {
                 canNext: true, 
                 canPrevious: true,
