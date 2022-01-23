@@ -12,5 +12,5 @@ server.listen(port, () => {
 });
 
 server.post('/quote', (req, res) => {
-  res.send(204)
+  res.json({ code: 200 })
 })

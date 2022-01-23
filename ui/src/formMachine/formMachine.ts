@@ -2,7 +2,6 @@ import { MachineConfig, MachineOptions, createMachine, assign } from 'xstate';
 
 import { changeView } from './formMachine.actions';
 import { State, Context, FormEvent } from './formMachine.types';
-import { ContactData } from '../types'
 import { Api } from '../api'
 
 const api = new Api();

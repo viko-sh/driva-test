@@ -4,11 +4,6 @@ import { ContactData, DetailsData } from '../types'
 
 export type Event = { type: 'NEXT' } | { type: 'PREVIOUS' };
 
-export type View = {
-  Component: ReactNode;
-  step: number;
-};
-
 export type Context = {
   canPrevious: Boolean;
   canNext: Boolean;
