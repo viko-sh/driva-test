@@ -1,28 +1,10 @@
 import React, { Component, ChangeEvent } from "react";
 import { DetailsData } from '../../types'
-import Joi from "joi"
+import { employerSchema, afterTaxIncomeSchema, detailsSchema, fullDetailsSchema } from "../../validation"
 
 interface DetailsDataProps {
   machine: any
 }
-
-const afterTaxIncomeSchema = {
-  income: Joi.number().min(1).required().label('Income Amount'),
-  frequency: Joi.string().valid('weekly', 'fortnightly', 'monthly', 'yearly').required().label('Income Frequency'),
-}
-const employerSchema = {
-  name: Joi.string().required().label('Employer Name'),
-  years: Joi.number().min(0).max(7).required().label('Employer Years'),
-  months: Joi.number().min(0).max(11).required().label('Employer Months')
-}
-const schema = {
-  relationshipStatus: Joi.string().valid('single', 'married', 'divorced').required().label('Relationship Status'),
-  afterTaxIncome: Joi.object(afterTaxIncomeSchema).required(),
-  occupation: Joi.string().required().label('Occupation'),
-  employer: Joi.object(employerSchema).required().or('years', 'months'),
-  dependants: Joi.number().min(0).max(10).required().label('Dependants')
-}
-const fullSchema = Joi.object(schema)
 
 export class DetailsDataFormPart extends Component<DetailsDataProps> {
   constructor(props: DetailsDataProps) {
@@ -61,7 +43,7 @@ export class DetailsDataFormPart extends Component<DetailsDataProps> {
   }
 
   next() {
-    const { error } = fullSchema.validate(this.state, { abortEarly: false, errors: { wrap: { label: false } } })
+    const { error } = fullDetailsSchema.validate(this.state, { abortEarly: false, errors: { wrap: { label: false } } })
     if (error) {
         error.details.forEach(detail => {
           if (detail.path.length > 1) {
@@ -81,7 +63,7 @@ export class DetailsDataFormPart extends Component<DetailsDataProps> {
   }
 
   relationshipStatusChange(event: ChangeEvent<HTMLSelectElement>) {
-    const { error } = schema.relationshipStatus.validate(event.target.value, { errors: { wrap: { label: false } } })
+    const { error } = detailsSchema.relationshipStatus.validate(event.target.value, { errors: { wrap: { label: false } } })
     this.errors.relationshipStatus = error?.message
 
     this.setState({ relationshipStatus: event.target.value });
@@ -102,7 +84,7 @@ export class DetailsDataFormPart extends Component<DetailsDataProps> {
   }
 
   occupationChange(event: ChangeEvent<HTMLInputElement>) {
-    const { error } = schema.occupation.validate(event.target.value, { errors: { wrap: { label: false } } })
+    const { error } = detailsSchema.occupation.validate(event.target.value, { errors: { wrap: { label: false } } })
     this.errors.occupation = error?.message
 
     this.setState({ occupation: event.target.value });
@@ -130,7 +112,7 @@ export class DetailsDataFormPart extends Component<DetailsDataProps> {
   }
 
   dependantsChange(event: ChangeEvent<HTMLInputElement>) {
-    const { error } = schema.dependants.validate(event.target.value, { errors: { wrap: { label: false } } })
+    const { error } = detailsSchema.dependants.validate(event.target.value, { errors: { wrap: { label: false } } })
     this.errors.dependants = error?.message
 
     this.setState({ dependants: event.target.value });

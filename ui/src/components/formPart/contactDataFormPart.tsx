@@ -1,18 +1,10 @@
 import React, { Component, ChangeEvent } from "react";
 import { ContactData } from '../../types'
-import Joi from "joi"
+import { contactSchema, fullContactSchema } from '../../validation'
 
 interface ContactDataProps {
     machine: any
 }
-
-const schema = {
-    firstName: Joi.string().required().label('First Name'),
-    lastName: Joi.string().required().label('Last Name'),
-    mobileNumber: Joi.string().required().label('Mobile Number'),
-    email: Joi.string()/*.email({ tlds: { allow: ['COM'] } })*/.required().label('Email')
-}
-const fullSchema = Joi.object(schema)
 
 export class ContactDataFormPart extends Component<ContactDataProps> {
     constructor(props: ContactDataProps) {
@@ -43,7 +35,7 @@ export class ContactDataFormPart extends Component<ContactDataProps> {
     }
 
     next() {
-        const { error } = fullSchema.validate(this.state, { abortEarly: false, errors: { wrap: { label: false } } })
+        const { error } = fullContactSchema.validate(this.state, { abortEarly: false, errors: { wrap: { label: false } } })
         if (error) {
             error.details.forEach(detail => {
                 this.errors[detail.path[0]] = detail.message
@@ -60,28 +52,28 @@ export class ContactDataFormPart extends Component<ContactDataProps> {
     }
 
     firstNameChange(event: ChangeEvent<HTMLInputElement>) {
-        const { error } = schema.firstName.validate(event.target.value, { errors: { wrap: { label: false } } })
+        const { error } = contactSchema.firstName.validate(event.target.value, { errors: { wrap: { label: false } } })
         this.errors.firstName = error?.message
         
         this.setState({firstName: event.target.value});
     }
 
     lastNameChange(event: ChangeEvent<HTMLInputElement>) {
-        const { error } = schema.lastName.validate(event.target.value, { errors: { wrap: { label: false } } })
+        const { error } = contactSchema.lastName.validate(event.target.value, { errors: { wrap: { label: false } } })
         this.errors.lastName = error?.message
 
         this.setState({lastName: event.target.value});
     }
 
     mobileNumberChange(event: ChangeEvent<HTMLInputElement>) {
-        const { error } = schema.mobileNumber.validate(event.target.value, { errors: { wrap: { label: false } } })
+        const { error } = contactSchema.mobileNumber.validate(event.target.value, { errors: { wrap: { label: false } } })
         this.errors.mobileNumber = error?.message
 
         this.setState({mobileNumber: event.target.value});
     }
 
     emailChange(event: ChangeEvent<HTMLInputElement>) {
-        const { error } = schema.email.validate(event.target.value, { errors: { wrap: { label: false } } })
+        const { error } = contactSchema.email.validate(event.target.value, { errors: { wrap: { label: false } } })
         this.errors.email = error?.message
 
         this.setState({email: event.target.value});
