@@ -12,7 +12,8 @@ export type View = {
 export type Context = {
   canPrevious: Boolean;
   canNext: Boolean;
-  // currentView: View;
+  contact?: ContactData;
+  details?: DetailsData;
 };
 
 export type State = {

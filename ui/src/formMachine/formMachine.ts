@@ -3,7 +3,9 @@ import { MachineConfig, MachineOptions, createMachine, assign } from 'xstate';
 import { changeView } from './formMachine.actions';
 import { State, Context, FormEvent } from './formMachine.types';
 import { ContactData } from '../types'
+import { Api } from '../api'
 
+const api = new Api();
 const initialStateName = 'contact';
 
 const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
@@ -11,8 +13,7 @@ const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
   initial: initialStateName,
   context: {
     canPrevious: false,
-    canNext: true,
-    // currentView: mapNameToView[initialStateName],
+    canNext: true
   },
   states: {
     contact: {
@@ -65,7 +66,7 @@ const formMachineConfig: MachineConfig<Context, State, FormEvent> = {
       invoke: {
         id: "submitting",
         src: ctx => {
-          return Promise.resolve()
+          return api.submitInformation({ contact: ctx.contact, details: ctx.details })
         },
         onDone: {
           target: "submitted",
