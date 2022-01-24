@@ -2,17 +2,18 @@ import React from 'react';
 
 const labelStyle = ()=>{
   return {
-    margin: '20px',
-    width: '100px'
+    margin: '5px',
+    display: 'block'
   }
 }
 
 const inputStyle = ()=>{
   return {
-    margin: '10px',
-    width: '200px',
+    margin: '5px',
     height: '30px',
-    borderRadius: '5px'
+    borderRadius: '5px',
+    display: 'block',
+    width: '100%'
   }
 }
 

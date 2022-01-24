@@ -52,7 +52,7 @@ const App: React.FC = () => {
   const style = () => {
     return {
       margin: 'auto',
-      width: '600px',
+      width: '400px',
       paddingTop: '80px'
     }
   }
@@ -65,8 +65,8 @@ const App: React.FC = () => {
 
   const buttonStyle = () => {
     return {
-      width: '180px',
-      height: '30px',
+      width: '130px',
+      height: '40px',
       margin: '20px'
     }
   }
@@ -88,7 +88,7 @@ const App: React.FC = () => {
       </table>
     </form>
     <button style={buttonStyle()} onClick={()=>goPreviousPage()}>Previous</button>
-    <button style={buttonStyle()} onClick={async ()=>goNextPage()}>Next</button>
+    <button style={buttonStyle()} className="right-aligh-button" onClick={async ()=>goNextPage()}>Next</button>
   </div>;
 };
 

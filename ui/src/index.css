@@ -13,3 +13,21 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+button {
+    background-color: #e5d688;
+    border-radius: 50px;
+    border: 3px;
+    color: #363535
+}
+
+input, select {
+  border-color: #d7d7d7;
+  border: aliceblue;
+}
+
+
+
+.right-aligh-button {
+  float: right;
+}

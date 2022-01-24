@@ -2,17 +2,18 @@ import React from 'react';
 
 const labelStyle = ()=>{
   return {
-    margin: '20px',
-    width: '100px'
+    margin: '5px',
+    display: 'block'
   }
 }
 
-const inputStyle = ()=>{
+const selectStyle = ()=>{
   return {
-    margin: '10px',
-    width: '200px',
+    margin: '5px',
     height: '30px',
-    borderRadius: '5px'
+    borderRadius: '5px',
+    display: 'block',
+    width: '101%'
   }
 }
 
@@ -20,7 +21,7 @@ export const PickListQuestion  = ({question, answers, changeHandler}: {question:
   const answer = answers[question.id]
   return <div>
       <label style={labelStyle()}>{question.label}</label>
-      <select style={inputStyle()} value={answer} onChange={evt=>changeHandler(question.id, evt.target.value, question.validation)}>
+      <select style={selectStyle()} value={answer} onChange={evt=>changeHandler(question.id, evt.target.value, question.validation)}>
             {question.restrictedValue.map((row:any)=><option value={row}>{row}</option>)}
           </select>
   </div>;
