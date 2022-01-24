@@ -22,7 +22,7 @@ export const OpenQuestion  = ({question, answers, changeHandler, validationError
     const answer = answers[question.id]
   return <div>
       <label style={labelStyle()}>{question.label}</label>
-      <input style={inputStyle()} type='Text' value={answer} onChange={evt=>changeHandler(question.id, evt.target.value, question.validation)} placeholder={question.placeholder}></input>
-      <p hidden={hideErrorMsg}>{question.validationError}</p>
+      <input style={inputStyle()} type='Text' value={ answer || ''} onChange={evt=>changeHandler(question.id, evt.target.value, question.validation)} placeholder={question.placeholder}></input>
+      <p className="validation-error" hidden={hideErrorMsg}>{question.validationError}</p>
   </div>
 };

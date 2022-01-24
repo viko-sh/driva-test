@@ -26,7 +26,12 @@ input, select {
   border: aliceblue;
 }
 
-
+.validation-error {
+    color: #e36b6b;
+    margin-top: 0;
+    margin-left: 5px;
+    height: 10px;
+}
 
 .right-aligh-button {
   float: right;
