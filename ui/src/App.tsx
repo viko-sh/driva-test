@@ -87,7 +87,7 @@ const App: React.FC = () => {
         }
       </table>
     </form>
-    <button style={buttonStyle()} onClick={()=>goPreviousPage()}>Previous</button>
+    <button style={buttonStyle()} onClick={()=>{goPreviousPage()}}>Previous</button>
     <button style={buttonStyle()} className="right-aligh-button" onClick={async ()=>goNextPage()}>Next</button>
   </div>;
 };
