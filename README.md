@@ -1,8 +1,8 @@
 
 # Driva Engineer Tech Challenge 
 
-## The Task
-Create a user multi step input form, this should behave as a single page application (SPA) using React JS and Node JS.
+## Client Side Task
+Create a user multi-step input form, this should behave as a single page application (SPA) using ReactJS and NodeJS.
 
 The screenshots can be found on the project root folder
 ![Step 01](/step1.png?raw=true "Step One")
@@ -15,26 +15,56 @@ As you can see in the screenshot, the form contains the following pieces of info
 * Mobile number
 * Email
 
+Clicking Next button should validate the form and, if valid, take the user to the next step.
+
 ### Step Two
-The second step will represent a bit more information about the user as following:
-* Relationship status - please add at least three choices
-* After tax income and frequency
-* Occupation
-* Current employer
-* Time in current employment - years and months as numbers 1-12
-* Dependats - 1-10
-This is the last step and by clicking Next, the form should submit the information to the server.
+The second step will represent more information about the user:
+* Relationship status (e.g. married, single, de facto)
+* After-tax income, and frequency of this income
+
+NOTE: The other fields are not a priority to implement.
+
+Clicking Next button should validate the form and, if valid, the form should submit all the information to the server.
+
+Clicking Back button should take the user to the previous step (irrespective of whether the form is valid or not) and display the current values.
 
 ### Navigation
 Please separate the two steps into two different routes, and provide a way to navigate back and forth.
 
-### Backend
-Please save the user information in the quotes table.
-From the table structure, you can see that not all the fields from step1 and step2 represented directly as columns. 
-You are welcome to add more columns, or save the rest as JSON in quote_data field.
+### Server
+Server should validate the submitted payload and only be Accepted if valid, or else rejected as a Bad Request.
 
-### Notes
-You can use any UI framework you like, or just clean CSS, **this is not a UI/UX/CSS test**, so better to focus on the core requirements, validation, and data. 
+Save the submitted information in the `quotes` table.
+
+From the table structure, you can see that not all the fields from step 1 and step2 are represented directly as columns. 
+
+You are welcome to modify the schema to suit your design preferences, or persist the submission as JSON in the `quote_data` field.
+
+### Implementation Notes
+The focus of this exercise is to demonstrate a solid shippable implementation.
+
+Typescript and automated tests are highly recommended as part of the solution.
+
+You are free to choose libraries which you deem suitable and helpful towards the end product. Some ideas/options:
+
+* Library:
+  * React + React Router DOM
+  * Next.js
+* CSS:
+  * Plain CSS modules
+  * Styled components
+  * SASS
+* Forms:
+  * React Hook Form
+  * React Final Form
+  * Formik
+* Validation:
+  * Zod
+  * Yup
+* Tests:
+  * Jest
+  * Cypress
+ 
 
 ## Getting Started
 We have provided a bit of boilerplate code that you can use to get started.  You are **not** required to use this boilerplate, so feel free to throw it all away and start fresh if you prefer.
