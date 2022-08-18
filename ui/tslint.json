@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint-react", "tslint-config-prettier"],
+  "extends": ["tslint-react", "tslint:latest", "tslint-config-prettier"],
   "rules": {
     "ordered-imports": false,
     "align": [true, "parameters", "statements"],
