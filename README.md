@@ -1,7 +1,7 @@
 
 # Driva Engineer Tech Challenge 
 
-## Client Side Task
+## The Assignment
 Create a user multi-step input form, this should behave as a single page application (SPA) using ReactJS and NodeJS.
 
 The screenshots can be found on the project root folder
